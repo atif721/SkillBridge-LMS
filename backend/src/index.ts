@@ -31,38 +31,20 @@ class Server {
   }
 }
 
-// Test database connection
+// Test database connection (lightweight)
 async function testDatabaseConnection() {
   try {
-    // Test the connection
     await prisma.$connect();
     Logger.info("Database connected successfully!");
-
-    // Create a test user
-    const user = await prisma.user.create({
-      data: {
-        name: 'Atif',
-        email: 'atif@gmail.com',
-      },
-    });
-    Logger.log('Created user:', user);
-
-    // Fetch all users
-    const allUsers = await prisma.user.findMany();
-    Logger.log('All users:', JSON.stringify(allUsers, null, 2));
-
   } catch (error) {
     Logger.error("Database connection failed:", error);
     process.exit(1);
   }
 }
 
-// Start the server and test database
 async function bootstrap() {
-  // Test database first
   await testDatabaseConnection();
 
-  // Then start the server
   const server = new Server();
   server.start();
 }
@@ -80,7 +62,6 @@ process.on('SIGTERM', async () => {
   process.exit(0);
 });
 
-// Start everything
 bootstrap().catch(async (error) => {
   Logger.error("Failed to start application:", error);
   await prisma.$disconnect();
