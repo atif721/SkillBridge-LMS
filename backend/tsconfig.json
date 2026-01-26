@@ -4,8 +4,12 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "module": "nodenext",
-    "target": "esnext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
+
     // "types": [],
     // For nodejs:
     "lib": ["esnext"],
