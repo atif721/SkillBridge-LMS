@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node --no-warnings -r dotenv/config dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node --no-warnings -r dotenv/config dist/index.js\"",
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
