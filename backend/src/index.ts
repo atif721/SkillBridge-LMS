@@ -1,6 +1,6 @@
 import { Logger } from "@packages/logger";
 import express from "express";
-import { prisma } from './lib/prisma';
+import { prisma } from '../config/lib/prisma';
 
 class Server {
   public app: express.Application;
