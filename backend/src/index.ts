@@ -22,6 +22,16 @@ class Server {
     this.app.get("/", (req, res) => {
       res.send("Hello world");
     });
+
+    // Health check endpoint
+    this.app.get("/health", async (req, res) => {
+      try {
+        await prisma.$queryRaw`SELECT 1`;
+        res.json({ status: "ok", database: "connected" });
+      } catch (error) {
+        res.status(503).json({ status: "error", database: "disconnected" });
+      }
+    });
   }
 
   public start(): void {
@@ -31,8 +41,8 @@ class Server {
   }
 }
 
-// Test database connection (lightweight)
-async function testDatabaseConnection() {
+// Lightweight database connection check
+async function connectDatabase() {
   try {
     await prisma.$connect();
     Logger.info("Database connected successfully!");
@@ -43,7 +53,7 @@ async function testDatabaseConnection() {
 }
 
 async function bootstrap() {
-  await testDatabaseConnection();
+  await connectDatabase();
 
   const server = new Server();
   server.start();
