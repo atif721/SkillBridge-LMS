@@ -4,8 +4,7 @@ const WebsiteLayout = () => {
   return (
     <>
       <header>
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/"></Link>
       </header>
 
       <main>
