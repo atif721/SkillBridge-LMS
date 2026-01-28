@@ -1,5 +1,5 @@
 // import { useNavigate } from "react-router-dom";
-import Button from "../../components/Common/Button";
+import Button from "@/components/Common/Button";
 import { FaGithub } from "react-icons/fa";
 
 export default function Login() {
