@@ -1,6 +1,9 @@
 import { Logger } from "@packages/logger";
 import express from "express";
 import { prisma } from '../config/lib/prisma';
+import { corsConfig } from "../config/cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 class Server {
   public app: express.Application;
@@ -16,6 +19,12 @@ class Server {
       throw new Error("Environment variable `SERVER_PORT` not found");
     }
     this.app.set("port", process.env.SERVER_PORT);
+
+    this.app.use(corsConfig());
+
+    this.app.use(morgan("tiny"));
+
+    this.app.use(cookieParser());
   }
 
   public routes(): void {
@@ -75,7 +84,7 @@ async function connectDatabase() {
   }
 }
 
-async function bootstrap() {
+async function main() {
   await connectDatabase();
 
   const server = new Server();
@@ -95,7 +104,7 @@ process.on('SIGTERM', async () => {
   process.exit(0);
 });
 
-bootstrap().catch(async (error) => {
+main().catch(async (error) => {
   Logger.error("Failed to start application:", error);
   await prisma.$disconnect();
   process.exit(1);
