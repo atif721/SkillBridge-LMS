@@ -19,20 +19,43 @@ class Server {
   }
 
   public routes(): void {
+    // Root
     this.app.get("/", (req, res) => {
-      res.send("Hello world");
+      res.send("API is running");
     });
 
-    // Health check endpoint
+    // Get all users
+    this.app.get("/users", async (req, res) => {
+      try {
+        const users = await prisma.user.findMany({
+          orderBy: { id: "asc" },
+        });
+
+        res.json({
+          success: true,
+          count: users.length,
+          data: users,
+        });
+      } catch (error) {
+        Logger.error("Failed to fetch users:", error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to fetch users",
+        });
+      }
+    });
+
+    // Health check
     this.app.get("/health", async (req, res) => {
       try {
         await prisma.$queryRaw`SELECT 1`;
         res.json({ status: "ok", database: "connected" });
-      } catch (error) {
+      } catch {
         res.status(503).json({ status: "error", database: "disconnected" });
       }
     });
   }
+
 
   public start(): void {
     this.app.listen(this.app.get("port"), () => {

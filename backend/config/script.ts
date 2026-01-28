@@ -49,9 +49,9 @@ async function seed() {
 
 // Main function
 async function main() {
-  await testDatabaseConnection();
+  // await testDatabaseConnection();
   // Uncomment to run seed:
-  // await seed();
+  await seed();
 }
 
 main()
