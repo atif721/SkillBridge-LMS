@@ -2,12 +2,12 @@
 import Button from "@/components/Common/Button";
 import { FaGithub } from "react-icons/fa";
 
-export default function Login() {
+const SignIn = () => {
   // const navigate = useNavigate();
 
   const signinHandler = () => {
     // Redirect to backend GitHub OAuth endpoint
-    window.location.href = "http://localhost:3000/auth/github";
+    window.location.href = "http://localhost:3000/auth/github/callback";
   };
 
   return (
@@ -33,4 +33,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default SignIn;

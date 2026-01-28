@@ -5,7 +5,10 @@ import Navbar from "../components/website/Navbar";
 const WebsiteLayout = () => {
   return (
     <div className="minflex flex-col bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200-h-screen flex flex-col bg-gray-50 text-gray-800 dark">
-      <Navbar></Navbar>
+      <nav>
+        <Navbar></Navbar>
+      </nav>
+
       <header>
         <Link to="/"></Link>
       </header>
