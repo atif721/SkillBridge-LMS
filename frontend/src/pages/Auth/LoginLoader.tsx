@@ -1,4 +1,4 @@
-const GithubCallback = () => {
+const LoginLoader = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 text-center max-w-md w-full">
@@ -16,4 +16,4 @@ const GithubCallback = () => {
   );
 };
 
-export default GithubCallback;
+export default LoginLoader;

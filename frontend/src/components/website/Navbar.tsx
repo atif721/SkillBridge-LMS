@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+import Button from "../Common/Button";
+import { BiLogOut } from "react-icons/bi";
 
 const Navbar = () => {
   const navLinks = [
@@ -32,6 +34,31 @@ const Navbar = () => {
                 </NavLink>
               ))}
             </div>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <Link to={"/signin"}>
+              <Button>{"Sign in"}</Button>
+            </Link>
+
+            <div className="flex items-center space-x-3">
+              <Button variant="outline">Admin Panel</Button>
+
+              <Button variant="outline">My Courses</Button>
+
+              <Button variant="secondary">
+                <div className="flex items-center">
+                  <span className="mr-1">Logout</span>
+                  <BiLogOut size={16} className="text-gray-500 ml-4 dark:text-gray-400" />
+                </div>
+              </Button>
+            </div>
+
+            <Button
+              onClick={() => setMode(mode === "light" ? "dark" : "light")}
+              icon={mode === "light" ? <Sun /> : <Moon />}
+              variant="secondary"
+            />
           </div>
         </div>
       </div>
