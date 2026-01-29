@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import Button from "../Common/Button";
 import { BiLogOut } from "react-icons/bi";
+import { useTheme } from "@/hooks/ui/useTheme";
+import { MdLightMode } from "react-icons/md";
+import { BsFillMoonFill } from "react-icons/bs";
 
 const Navbar = () => {
   const navLinks = [
@@ -8,6 +11,7 @@ const Navbar = () => {
     { to: "/courses", label: "Courses" },
     { to: "/leaderboard", label: "Leaderboard" },
   ];
+  const { mode, setMode } = useTheme();
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-linear-to-r dark:from-gray-900 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +60,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => setMode(mode === "light" ? "dark" : "light")}
-              icon={mode === "light" ? <Sun /> : <Moon />}
+              icon={mode === "light" ? <MdLightMode /> : <BsFillMoonFill />}
               variant="secondary"
             />
           </div>
