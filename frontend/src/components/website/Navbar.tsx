@@ -60,7 +60,7 @@ const Navbar = () => {
 
             <Button
               onClick={() => setMode(mode === "light" ? "dark" : "light")}
-              icon={mode === "light" ? <MdLightMode /> : <BsFillMoonFill />}
+              icon={mode === "light" ? <BsFillMoonFill /> : <MdLightMode />}
               variant="secondary"
             />
           </div>
