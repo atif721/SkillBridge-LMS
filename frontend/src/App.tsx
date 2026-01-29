@@ -1,19 +1,10 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import WebsiteLayout from "./layout/WebsiteLayout";
-import Home from "./components/Home/Home";
-import LoginLoader from "./pages/Auth/LoginLoader";
-import SignIn from "./pages/Auth/SignIn";
-
+import RouteHandler from "@/routes/RouteHandler";
 const App = () => {
   return (
-    <Routes>
-      <Route element={<WebsiteLayout />}>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/auth/github/callback" element={<LoginLoader />}></Route>
-        <Route path="/signin" element={<SignIn />}></Route>
-      </Route>
-    </Routes>
+    <>
+      <RouteHandler></RouteHandler>
+    </>
   );
 };
 
